@@ -879,20 +879,18 @@ where
         let mut sender_badge: usize = 0;
         let queue: &mut ArrayQueue<E, QLen> =
             unsafe { core::mem::transmute(self.queue.shared_queue as *mut ArrayQueue<E, QLen>) };
-        // TODO
-//        if let Some(ref irq_handler) = self.irq_handler {
+        if let Some(ref irq_handler) = self.irq_handler {
             // Run an initial ack to clear out interrupt state ahead of waiting
-//            match irq_handler.ack() {
-//                Ok(_) => (),
-//                Err(e) => {
-//                    debug_println!("Ack error in InterruptConsumer::consume setup. {:?}", e);
-//                    panic!()
-//                }
-//            };
-//        }
+            match irq_handler.ack() {
+                Ok(_) => (),
+                Err(e) => {
+                    debug_println!("Ack error in InterruptConsumer::consume setup. {:?}", e);
+                    panic!()
+                }
+            };
+        }
         unsafe {
             seL4_Poll(self.notification.cptr, &mut sender_badge as *mut usize);
-            //seL4_Wait(self.notification.cptr, &mut sender_badge as *mut usize);
             let current_badge = Badge::from(sender_badge);
             if self
                 .interrupt_badge
@@ -911,12 +909,10 @@ where
                     };
                 }
             }
-            if self.queue_badge.are_all_overlapping_bits_set(current_badge) {
-                if let Ok(e) = queue.pop() {
-                    Some(e)
-                } else {
-                    None
-                }
+            // NOTE: instead of dequeue on a signal, we always try to dequeue because
+            // we don't get a signal from the sender if the queue is full
+            if let Ok(e) = queue.pop() {
+                Some(e)
             } else {
                 None
             }
