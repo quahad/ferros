@@ -110,7 +110,7 @@ fn run(raw_bootinfo: &'static selfe_sys::seL4_BootInfo) -> Result<(), TopLevelEr
         let stack_mem =
             root_vspace.map_region(stack_mem, CapRights::RW, arch::vm_attributes::DEFAULT)?;
 
-        let hello_process = StandardProcess::new::<hello_printer::ProcParams, _>(
+        let mut hello_process = StandardProcess::new::<hello_printer::ProcParams, _>(
             &mut hello_vspace,
             hello_cnode,
             stack_mem,

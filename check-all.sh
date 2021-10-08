@@ -12,7 +12,7 @@ echo "====================== download toolchains ===============================
 toolchains_dir="${dir}/target/toolchains"
 mkdir -p $toolchains_dir
 
-armv7_toolchain="gcc-linaro-7.4.1-2019.02-i686_arm-linux-gnueabihf"
+armv7_toolchain="gcc-linaro-7.5.0-2019.12-i686_arm-linux-gnueabihf"
 armv7_toolchain_url="https://releases.linaro.org/components/toolchain/binaries/latest-7/arm-linux-gnueabihf/${armv7_toolchain}.tar.xz"
 armv7_toolchain_dir="${toolchains_dir}/${armv7_toolchain}"
 
@@ -26,7 +26,7 @@ else
     echo "Using existing armv7 toolchain at ${armv7_toolchain_dir}"
 fi
 
-armv8_toolchain="gcc-linaro-7.4.1-2019.02-i686_aarch64-linux-gnu"
+armv8_toolchain="gcc-linaro-7.5.0-2019.12-i686_aarch64-linux-gnu"
 armv8_toolchain_url="https://releases.linaro.org/components/toolchain/binaries/latest-7/aarch64-linux-gnu/${armv8_toolchain}.tar.xz"
 armv8_toolchain_dir="${toolchains_dir}/${armv8_toolchain}"
 

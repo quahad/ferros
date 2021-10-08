@@ -7,7 +7,7 @@ extern crate cross_queue;
 #[macro_use]
 extern crate ferros;
 #[macro_use]
-extern crate registers;
+extern crate bounded_registers;
 extern crate selfe_sys;
 #[macro_use]
 extern crate typenum;

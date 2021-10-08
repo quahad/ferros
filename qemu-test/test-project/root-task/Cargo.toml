@@ -13,7 +13,7 @@ ferros = { path = "../../.." , features = ["test_support"]}
 ferros-test = { path = "../../../ferros-test"}
 cross_queue = { path = "../../../cross_queue" }
 typenum = "1.10"
-registers = { git = "ssh://github.com/auxoncorp/registers.git" }
+bounded-registers = { git = "https://github.com/quahad/bounded-registers.git" }
 
 elf-process = { path = "../elf-process" }
 

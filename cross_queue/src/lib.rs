@@ -1,5 +1,5 @@
 #![no_std]
-#![feature(optin_builtin_traits)]
+#![feature(auto_traits)]
 //! A lock free queue implementation adapted from Crossbeam's `ArrayQueue`:
 //! https://github.com/crossbeam-rs/crossbeam
 //! crossbeam is dual-licensed via apache / MIT.
